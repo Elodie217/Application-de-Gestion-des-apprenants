@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  RewriteCond %{REQUEST_URI} !\.(.*)$ [NC]
+  RewriteRule   (.*)  /public/index.php
+
+  ErrorDocument 404 /public/page-introuvable
+</IfModule>
