@@ -32,7 +32,7 @@ class UtilisateurController
                 if ($utilisateurRepository->connexion($email, $utilisateur["motDePasseConnexion"])) {
                     $utilisateurConnecte = $utilisateurRepository->getUtilisateurbyEmail($email);
                     $roleUtilisateur = $utilisateurConnecte->getIdRole();
-                    $_SESSION['utilisateur_id'] = $utilisateurConnecte->getIdUtilisateur();
+                    $_SESSION['connecté'] = $utilisateurConnecte->getIdUtilisateur();
                     $_SESSION['role'] = $roleUtilisateur;
                     $response = array(
                         'status' => 'success',

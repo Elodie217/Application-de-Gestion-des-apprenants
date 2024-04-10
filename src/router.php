@@ -2,6 +2,7 @@
 <?php
 
 use src\Controllers\HomeController;
+use src\Controllers\TableauController;
 use src\Controllers\UtilisateurController;
 use src\Services\Routing;
 
@@ -27,7 +28,7 @@ $methode = $_SERVER['REQUEST_METHOD'];
 // donc ["film","delete","1"]
 $routeComposee = Routing::routeComposee($route);
 $HomeController = new HomeController;
-
+$TableauController = new TableauController;
 
 // j'utilise la boucle switch , pour gérer toutes les routes possibles dans mon application.
 // c'est à dire que chaque partie accessible aura son propre case 
@@ -80,7 +81,7 @@ switch ($route) {
         break;
     case HOME_URL . 'tableaudebord':
         if (isset($_SESSION['connecté'])) {
-
+            $TableauController->index();
             die;
         } else {
             $HomeController->index();

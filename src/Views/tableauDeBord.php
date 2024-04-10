@@ -12,7 +12,7 @@
 
 <body style="  font-family: 'Roboto', sans-serif " class="text-base">
     <?php
-    include './Include/navDeconnexion.php'
+    include __DIR__ . '/Include/navDeconnexion.php'
     ?>
 
     <section class="m-4 gap-10">

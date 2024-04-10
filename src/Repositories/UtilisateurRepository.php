@@ -40,7 +40,7 @@ class UtilisateurRepository
 
     public function getUtilisateurbyEmail(string $email): Utilisateur|bool
     {
-        $sql = "SELECT * FROM " . PREFIXE . " utilisateur WHERE Email_utilisateur = :email";
+        $sql = "SELECT * FROM " . PREFIXE . "utilisateur WHERE Email_utilisateur = :email";
 
         $statement = $this->db->prepare($sql);
         $statement->bindParam(':email', $email);
