@@ -18,6 +18,9 @@
     <section class="m-4 gap-10">
         <div class="flex">
             <p class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Accueil</p>
+            <p class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Promotions</p>
+            <p class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Utilisateurs</p>
+
             <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
         </div>
 
@@ -26,8 +29,8 @@
         <section class="flex flex-col bg-[#F8F9FA] rounded-[3px] px-[25px] py-[45px]">
             <div class="flex justify-between">
                 <div>
-                    <h2 class="promoApprenant text-[32px]"></h2>
-                    <p class="placePromo my-5"></p>
+                    <h2 class="promoFormateur text-[32px]"></h2>
+                    <p class="placePromoF my-5"></p>
                 </div>
                 <p class="dateDuJour font-bold"></p>
             </div>
@@ -43,6 +46,6 @@
 
 </body>
 <script src=" https://cdn.tailwindcss.com"></script>
-<script src="../../Public/assets/scriptTableauDeBordApprenant.js"></script>
+<script src="../../Public/assets/scriptTableauDeBordFormateur.js"></script>
 
 </html>
