@@ -12,7 +12,7 @@
 
 <body style="  font-family: 'Roboto', sans-serif ">
   <?php
-  include './Include/navConnexion.php'
+  include __DIR__ . '/Include/navConnexion.php'
   ?>
 
   <main class="flex justify-center">
@@ -31,11 +31,12 @@
         <input class="py-1.5 px-3 border-[1px] border-[#CED4DA]" type="password" id="motDePasse" name="motDePasse" placeholder="******">
       </div>
 
-      <button class="py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit m-auto font-bold">Connexion</button>
+      <button class="py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit m-auto font-bold" onclick="verificationconnexion()">Connexion</button>
 
   </main>
   </section>
 </body>
 <script src=" https://cdn.tailwindcss.com"></script>
+<script src="../../Public/assets/script.js"></script>
 
 </html>
