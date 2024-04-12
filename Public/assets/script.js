@@ -40,8 +40,11 @@ function connexion(email, mdp) {
 
 function reponseConnexion(reponse) {
   if (reponse["status"] == "success") {
-    console.log("success");
-    window.location.href = `http://applicationgestionapprenants2/public/tableaudebord`;
+    if (reponse["role"] == 1) {
+      window.location.href = `http://applicationgestionapprenants2/public/tableaudebordApprenant`;
+    } else if (reponse["role"] == 2) {
+      window.location.href = `http://applicationgestionapprenants2/public/tableaudebordFormateur`;
+    }
   } else if (reponse["status"] == "error") {
     console.log(reponse["message"]);
   }

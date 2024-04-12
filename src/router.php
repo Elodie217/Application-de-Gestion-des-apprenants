@@ -2,6 +2,7 @@
 <?php
 
 use src\Controllers\HomeController;
+use src\Controllers\PromoController;
 use src\Controllers\TableauController;
 use src\Controllers\UtilisateurController;
 use src\Services\Routing;
@@ -29,6 +30,7 @@ $methode = $_SERVER['REQUEST_METHOD'];
 $routeComposee = Routing::routeComposee($route);
 $HomeController = new HomeController;
 $TableauController = new TableauController;
+$PromoController = new PromoController;
 
 // j'utilise la boucle switch , pour gérer toutes les routes possibles dans mon application.
 // c'est à dire que chaque partie accessible aura son propre case 
@@ -43,50 +45,55 @@ switch ($route) {
         }
         break;
 
-        // Dans le cas ou la route est à l'accueil, mais on pourrait définir une autre route
     case HOME_URL . 'connexion':
 
-        // Je récupère la date
         $data = file_get_contents("php://input");
 
-        // Cette data étant envoyée en JSON, je dois la decoder avec cette fonction
-        // pour que ça soit interprétable par php
-        // le second argument true, indique que le résultat
-        // doit être sous forme de tableau 
-        // Pourquoi ? parce que ca sera plus facilement gérable en php
         $user = json_decode($data, true);
 
-        // Je déclare la variable email -> qui a une version néttoyée et sécurisée
-        // de ce qu'il y a dans mon tableau user à son index email, 
-        // voila pourquoi on passait l'argument true à la fonction
-        // json_decode()
         $email = htmlspecialchars(strip_tags(trim($user["emailConnexion"])));
         $password = htmlspecialchars(strip_tags(trim($user["motDePasseConnexion"])));
 
-        //  Maintenant que nous avons récupérer l'email et le password
-        // Nous allons pouvoir les donner à notre userController 
-        // et plus particulièrement à sa fonction login 
-        // auquel je fais appel ici
-        // Je fais appel à cette fonction en la mettant dans la variable
-        // reponse
-        // pourquoi ? car je pourrais retourner au format json cette réponse
-        // L'idée étant d'aller cherhcer le user pour ensuite le retourner
-        // au format json 
-        // A l'époque nous avions un fichier de traitement, qui est aujourd'hui
-        // remplacé par ce controller et ce router.
         $reponse =   $UtilisateurController->connexion($email, $password);
-        //  Je retourne au format JSON la réponse du controller
+
         echo json_encode($reponse);
 
         break;
-    case HOME_URL . 'tableaudebord':
-        if (isset($_SESSION['connecté'])) {
-            $TableauController->index();
-            die;
+    case $routeComposee[0] == "tableaudebordApprenant":
+        if (isset($_SESSION["connecté"]) && $_SESSION['role'] == 1) {
+
+            switch ($route) {
+                case $routeComposee[1] == "accueil":
+                    $idUtilisateur = $_SESSION["connecté"];
+                    echo $PromoController->afficherPromo($idUtilisateur);
+                    die;
+                default:
+                    $TableauController->indexApprenant();
+                    die;
+            }
         } else {
             $HomeController->index();
         }
-        break;
+    case $routeComposee[0] == "tableaudebordFormateur":
+        if (isset($_SESSION["connecté"]) && $_SESSION['role'] == 2) {
+
+            switch ($route) {
+                case $routeComposee[1] == "accueil":
+                    $idUtilisateur = $_SESSION["connecté"];
+                    echo $PromoController->afficherPromo($idUtilisateur);
+                    die;
+                default:
+                    $TableauController->indexFormateur();
+
+                    die;
+            }
+        } else {
+            $HomeController->index();
+        }
+
+    case HOME_URL . 'deconnexion':
+        $HomeController->deconnexion();
     default:
-        echo json_encode("Nothin here");
+        echo json_encode($route);
+        // echo json_encode("Nothin here");
 }

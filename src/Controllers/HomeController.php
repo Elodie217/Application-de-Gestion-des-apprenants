@@ -31,7 +31,7 @@ class HomeController
         }
     }
 
-    public function quit()
+    public function deconnexion()
     {
         session_destroy();
         header('location: ' . HOME_URL);
