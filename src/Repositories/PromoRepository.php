@@ -34,4 +34,22 @@ class PromoRepository
 
         return $retour;
     }
+
+    public function getAllPromos()
+    {
+
+        $sql = "SELECT * FROM " . PREFIXE . "promo";
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->execute();
+
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Promo::class);
+        $retour =  [];
+
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
+    }
 }
