@@ -34,8 +34,9 @@ class HomeController
     public function deconnexion()
     {
         session_destroy();
-        header('location: ' . HOME_URL);
-        die();
+        // header('Location: ' . HOME_URL);
+        // die();
+        return 'success';
     }
 
     public function page404(): void

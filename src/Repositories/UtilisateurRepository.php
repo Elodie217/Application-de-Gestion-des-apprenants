@@ -50,4 +50,25 @@ class UtilisateurRepository
 
         return $retour;
     }
+
+    public function getApprenantsbyIdPromo(int $idPromo)
+    {
+        $sql = "SELECT * FROM " . PREFIXE . "utilisateur WHERE " . PREFIXE . "utilisateur.Id_role = 1 
+        AND Id_utilisateur IN ( 
+        SELECT " . PREFIXE . "utilisateurpromo.Id_utilisateur FROM " . PREFIXE . "utilisateurpromo 
+        WHERE " . PREFIXE . "utilisateurpromo.Id_promo= :idPromo)";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idPromo', $idPromo);
+        $statement->execute();
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Utilisateur::class);
+
+        $retour =  [];
+
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+
+        return $retour;
+    }
 }

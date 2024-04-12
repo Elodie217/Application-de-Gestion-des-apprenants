@@ -151,4 +151,9 @@ class Utilisateur
 
         return $this;
     }
+
+    public function getObjectToArray(): array
+    {
+        return ['Id_utilisateur' => $this->getIdUtilisateur(), 'Nom_utilisateur' => $this->getNomUtilisateur(), 'Prenom_utilisateur' => $this->getPrenomUtilisateur(), 'MotDePasse_utilisateur' => $this->getMotDePasseUtilisateur(), 'Activiation_utilisateur' => $this->getActiviationUtilisateur(), 'Email_utilisateur' => $this->getEmailUtilisateur(), 'Id_role' => $this->getIdRole()];
+    }
 }

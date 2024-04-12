@@ -58,4 +58,11 @@ class UtilisateurController
             }
         }
     }
+
+    public function ApprenantsByIdPromo($idPromo)
+    {
+        $utilisateurRepository = new UtilisateurRepository;
+        $reponse = $utilisateurRepository->getApprenantsbyIdPromo($idPromo);
+        return json_encode($reponse);
+    }
 }
