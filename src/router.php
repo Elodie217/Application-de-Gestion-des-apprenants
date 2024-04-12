@@ -1,6 +1,7 @@
 
 <?php
 
+use src\Controllers\CoursController;
 use src\Controllers\HomeController;
 use src\Controllers\PromoController;
 use src\Controllers\TableauController;
@@ -31,6 +32,7 @@ $routeComposee = Routing::routeComposee($route);
 $HomeController = new HomeController;
 $TableauController = new TableauController;
 $PromoController = new PromoController;
+$CoursController = new CoursController;
 
 // j'utilise la boucle switch , pour gérer toutes les routes possibles dans mon application.
 // c'est à dire que chaque partie accessible aura son propre case 
@@ -65,7 +67,7 @@ switch ($route) {
             switch ($route) {
                 case $routeComposee[1] == "accueil":
                     $idUtilisateur = $_SESSION["connecté"];
-                    echo $PromoController->afficherPromo($idUtilisateur);
+                    echo $PromoController->afficherPromoByIdUtilisateur($idUtilisateur);
                     die;
                 default:
                     $TableauController->indexApprenant();
@@ -79,8 +81,22 @@ switch ($route) {
 
             switch ($route) {
                 case $routeComposee[1] == "accueil":
-                    $idUtilisateur = $_SESSION["connecté"];
-                    echo $PromoController->afficherPromo($idUtilisateur);
+                    switch ($route) {
+                        case $routeComposee[2] == "code":
+                            $data = file_get_contents("php://input");
+
+                            $Cours = json_decode($data, true);
+
+                            echo $CoursController->recupererCodeCours($Cours['Id_cours']);
+                            die;
+                        default:
+                            $idUtilisateur = $_SESSION["connecté"];
+
+                            echo $CoursController->afficherCoursPromo($idUtilisateur);
+                            die;
+                    }
+                case $routeComposee[1] == "promotions":
+                    echo $PromoController->afficherPromos();
                     die;
                 default:
                     $TableauController->indexFormateur();
