@@ -4,12 +4,12 @@
 use src\Controllers\CoursController;
 use src\Controllers\HomeController;
 use src\Controllers\PromoController;
+use src\Controllers\RoleController;
 use src\Controllers\TableauController;
 use src\Controllers\UtilisateurController;
 use src\Services\Routing;
 
 
-$UtilisateurController = new UtilisateurController;
 
 
 // $route est la route dans l'url, ex: http://localhost/ga/public/fims/123
@@ -28,11 +28,13 @@ $methode = $_SERVER['REQUEST_METHOD'];
 // Par exemple , si mon url est  http://localhost/ga/public/films/delete/1
 // $routeComposée sera un tableau contenant les paramètres après public entrecoupée par des / 
 // donc ["film","delete","1"]
+$UtilisateurController = new UtilisateurController;
 $routeComposee = Routing::routeComposee($route);
 $HomeController = new HomeController;
 $TableauController = new TableauController;
 $PromoController = new PromoController;
 $CoursController = new CoursController;
+$RoleController = new RoleController;
 
 // j'utilise la boucle switch , pour gérer toutes les routes possibles dans mon application.
 // c'est à dire que chaque partie accessible aura son propre case 
@@ -66,9 +68,22 @@ switch ($route) {
 
             switch ($route) {
                 case $routeComposee[1] == "accueil":
-                    $idUtilisateur = $_SESSION["connecté"];
-                    echo $PromoController->afficherPromoByIdUtilisateur($idUtilisateur);
-                    die;
+
+                    switch ($route) {
+                        case $routeComposee[2] == "code":
+                            $data = file_get_contents("php://input");
+
+                            $Cours = json_decode($data, true);
+
+                            echo $CoursController->signatureApprenant($Cours['Id_cours'], $Cours['Code_cours']);
+                            die;
+                        default:
+                            $idUtilisateur = $_SESSION["connecté"];
+
+                            echo $CoursController->afficherCoursPromo($idUtilisateur);
+                            die;
+                    }
+
                 default:
                     $TableauController->indexApprenant();
                     die;
@@ -96,8 +111,21 @@ switch ($route) {
                             die;
                     }
                 case $routeComposee[1] == "promotions":
-                    echo $PromoController->afficherPromos();
-                    die;
+                    switch ($route) {
+                        case $routeComposee[2] == "apprenants":
+                            $data = file_get_contents("php://input");
+
+                            $Promo = json_decode($data, true);
+
+                            echo $UtilisateurController->ApprenantsByIdPromo($Promo['Id_promo']);
+                            die;
+                        case $routeComposee[2] == "roles":
+                            echo $RoleController->recupererRoles();
+                            die;
+                        default:
+                            echo $PromoController->afficherPromos();
+                            die;
+                    }
                 default:
                     $TableauController->indexFormateur();
 
@@ -105,11 +133,13 @@ switch ($route) {
             }
         } else {
             $HomeController->index();
+            die;
         }
 
     case HOME_URL . 'deconnexion':
         $HomeController->deconnexion();
+        echo true;
+        die;
     default:
-        echo json_encode($route);
-        // echo json_encode("Nothin here");
+        echo json_encode("Nothin here");
 }

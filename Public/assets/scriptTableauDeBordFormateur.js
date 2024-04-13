@@ -181,7 +181,6 @@ function recupererCoursPromo() {
     .then((res) => res.text())
     .then((data) => {
       courspromo = JSON.parse(data);
-      console.log(courspromo);
       afficherAccueil(courspromo);
     });
 }
@@ -226,5 +225,9 @@ function signatureFormateur(Id_cours) {
 function deconnexion() {
   fetch("http://applicationgestionapprenants2/public/deconnexion")
     .then((res) => res.text())
-    .then((data) => console.log(data));
+    .then((data) => {
+      if (data) {
+        window.location.href = `http://applicationgestionapprenants2/public/`;
+      }
+    });
 }

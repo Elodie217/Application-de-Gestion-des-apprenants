@@ -77,4 +77,19 @@ class CoursRepository
             return $code;
         }
     }
+
+    public function signatureApprenant($Id_cours, $Code_cours)
+    {
+
+        $sql = "SELECT * FROM " . PREFIXE . "cours
+        WHERE Id_cours = :Id_cours AND  Code_cours = :Code_cours";
+
+        $statement = $this->db->prepare($sql);
+        $statement->execute([
+            ":Id_cours" => $Id_cours,
+            ":Code_cours" => $Code_cours
+        ]);
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }

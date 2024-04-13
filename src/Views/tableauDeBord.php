@@ -23,21 +23,8 @@
 
         <h3 class="text-2xl my-6">Cours du jour</h3>
 
-        <section class="flex flex-col bg-[#F8F9FA] rounded-[3px] px-[25px] py-[45px]">
-            <div class="flex justify-between">
-                <div>
-                    <h2 class="promoApprenant text-[32px]"></h2>
-                    <p class="placePromo my-5"></p>
-                </div>
-                <p class="dateDuJour font-bold"></p>
-            </div>
-            <div class="flex flex-col">
-                <label for="code">Code *</label>
-                <input class="py-1.5 px-3 border-[1px] border-[#CED4DA] my-4" type="number" id="code" name="code" placeholder="......">
-                <div class="relative my-4">
-                    <button class="py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold absolute right-0 ">Valider présence</button>
-                </div>
-            </div>
+        <section class="sectionCoursA">
+
         </section>
     </section>
 
