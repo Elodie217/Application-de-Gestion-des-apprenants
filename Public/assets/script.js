@@ -1,15 +1,17 @@
+let messageErreurConnexion = document.querySelector(".messageErreurConnexion");
 function verificationconnexion() {
   let email = document.querySelector("#email").value;
   let mdp = document.querySelector("#motDePasse").value;
-
   if (email !== "" && mdp !== "") {
+    messageErreurConnexion.innerText = "";
     if (checkEmail(email)) {
+      messageErreurConnexion.innerText = "";
       connexion(email, mdp);
     } else {
-      // afficher message erreur mail
+      messageErreurConnexion.innerText = "Merci de remplir un email valide";
     }
   } else {
-    // afficher un message de champ vide
+    messageErreurConnexion.innerText = "Merci de remplir tous les champs";
   }
 }
 
@@ -46,6 +48,6 @@ function reponseConnexion(reponse) {
       window.location.href = `http://applicationgestionapprenants2/public/tableaudebordFormateur`;
     }
   } else if (reponse["status"] == "error") {
-    console.log(reponse["message"]);
+    messageErreurConnexion.innerText = reponse["message"];
   }
 }
