@@ -77,6 +77,24 @@ switch ($route) {
 
                             echo $CoursController->signatureApprenant($Cours['Id_cours'], $Cours['Code_cours']);
                             die;
+
+                        case $routeComposee[2] == "codeRetard":
+                            $data = file_get_contents("php://input");
+
+                            $Cours = json_decode($data, true);
+
+                            echo $CoursController->signatureApprenant($Cours['Id_cours'], $Cours['Code_cours'], 1);
+                            die;
+
+
+                        case $routeComposee[2] == "verifsignature":
+                            $data = file_get_contents("php://input");
+
+                            $Cours = json_decode($data, true);
+
+                            echo $CoursController->verifiactionSignature($Cours['Id_cours']);
+                            die;
+
                         default:
                             $idUtilisateur = $_SESSION["connecté"];
 

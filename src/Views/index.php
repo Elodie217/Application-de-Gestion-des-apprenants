@@ -32,6 +32,7 @@
       </div>
 
       <button class="py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit m-auto font-bold" onclick="verificationconnexion()">Connexion</button>
+      <div class="messageErreurConnexion text-[#ff0000] text-center text-lg"> </div>
 
   </main>
   </section>

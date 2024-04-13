@@ -24,7 +24,7 @@ class CoursController
         return json_encode($reponse);
     }
 
-    function signatureApprenant($Id_cours, $Code_cours)
+    function signatureApprenant($Id_cours, $Code_cours, $Retard = 0)
     {
         if (is_numeric($Code_cours) && strlen($Code_cours) == 5) {
             $Code_cours = htmlspecialchars($Code_cours);
@@ -33,7 +33,7 @@ class CoursController
             if ($CoursRepository->signatureApprenant($Id_cours, $Code_cours)) {
                 $UtilisateurCoursRepo = new UtilisateursCoursRepository;
                 $IdUtilisateur = $_SESSION["connecté"];
-                $reponse = $UtilisateurCoursRepo->updateAbsenceRetard($Id_cours, $IdUtilisateur);
+                $reponse = $UtilisateurCoursRepo->updateAbsenceRetard($Id_cours, $IdUtilisateur, $Retard);
             } else {
                 $reponse = array(
                     'status' => 'error',
@@ -48,5 +48,12 @@ class CoursController
             );
             return json_encode($response);
         }
+    }
+
+    function verifiactionSignature($idCours)
+    {
+        $UtilisateurCoursRepo = new UtilisateursCoursRepository;
+        $reponse = $UtilisateurCoursRepo->verifiactionSignature($idCours);
+        return json_encode($reponse);
     }
 }
