@@ -122,6 +122,14 @@ switch ($route) {
 
                             echo $CoursController->recupererCodeCours($Cours['Id_cours']);
                             die;
+
+                        case $routeComposee[2] == "verifcodecreer":
+                            $data = file_get_contents("php://input");
+
+                            $Cours = json_decode($data, true);
+
+                            echo $CoursController->verificationCodeCours($Cours['Id_cours']);
+                            die;
                         default:
                             $idUtilisateur = $_SESSION["connecté"];
 
@@ -139,6 +147,34 @@ switch ($route) {
                             die;
                         case $routeComposee[2] == "roles":
                             echo $RoleController->recupererRoles();
+                            die;
+                        case $routeComposee[2] == "newpromo":
+                            $data = file_get_contents("php://input");
+
+                            $Promo = json_decode($data, true);
+
+                            echo $PromoController->sauvegarderPromo($Promo['nomPromo'], $Promo['dateDebutPromo'], $Promo['dateFinPromo'], $Promo['placePromo']);
+                            die;
+                        case $routeComposee[2] == "affichereditpromo":
+                            $data = file_get_contents("php://input");
+
+                            $Promo = json_decode($data, true);
+
+                            echo $PromoController->recupererInfoPromo($Promo["idPromo"]);
+                            die;
+                        case $routeComposee[2] == "editpromo":
+                            $data = file_get_contents("php://input");
+
+                            $Promo = json_decode($data, true);
+
+                            echo $PromoController->editPromo($Promo["Id_promo"], $Promo["nomPromoEdit"], $Promo["dateDebutPromoEdit"], $Promo["dateFinPromoEdit"], $Promo["placePromoEdit"]);
+                            die;
+                        case $routeComposee[2] == "supprpromo":
+                            $data = file_get_contents("php://input");
+
+                            $Promo = json_decode($data, true);
+
+                            echo $PromoController->supprPromo($Promo["Id_promo"]);
                             die;
                         default:
                             echo $PromoController->afficherPromos();

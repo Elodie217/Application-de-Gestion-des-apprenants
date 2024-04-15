@@ -10,10 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
-<body style="  font-family: 'Roboto', sans-serif " class="text-base">
+<body style="  font-family: 'Roboto', sans-serif " class="text-base relative">
     <?php
     include __DIR__ . '/Include/navDeconnexion.php'
     ?>
+
+    <div class="messageReussite hidden text-[#0cdb00] text-center text-xl absolute w-full m-auto top-6"></div>
+
 
     <section class="Accueil m-4 gap-10">
         <div class="flex">
@@ -32,120 +35,18 @@
 
         </section>
     </section>
+
+
     <section class="Promotions hidden m-4 gap-10">
-        <div class="flex">
-            <button onclick="afficherSectionAccueil()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Accueil</button>
-            <button onclick="afficherSectionPromotions()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Promotions</button>
-            <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Utilisateurs</button>
-
-            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
-        </div>
-        <div class="my-10">
-            <h3 class="text-2xl my-4">Toutes les promotions</h3>
-            <p>Tableau des promotions de Simplon</p>
-        </div>
-        <!-- Table responsive wrapper -->
-        <section class="overflow-x-auto bg-white">
-
-            <!-- Table -->
-            <table class="min-w-full text-left whitespace-nowrap" style="width: 100%;">
-
-                <!-- Table head -->
-                <thead class=" tracking-wider border-b-2 border-black">
-                    <tr>
-                        <th scope="col" class="px-6 py-4 font-bold" style="width: 5%;">
-                            <input type="checkbox">
-                        </th>
-                        <th scope="col" class="px-6 py-4 font-bold" style="width: 18%">
-                            Promotion
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 18%">
-                            Début
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 18%">
-                            Fin
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 26%">
-                            Places
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 15%">
-
-                        </th>
-                    </tr>
-                </thead>
-
-                <!-- Table body -->
-                <tbody class="tableauBody">
-
-                </tbody>
-
-            </table>
-
-        </section>
+        <?php
+        include __DIR__ . '/Include/Promos/promos.php'
+        ?>
     </section>
 
     <section class="VoirPromotion hidden m-4 gap-10">
-        <div class="flex">
-            <button onclick="afficherSectionAccueil()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Accueil</button>
-            <button onclick="afficherSectionPromotions()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Promotions</button>
-            <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Utilisateurs</button>
-
-            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
-        </div>
-        <div class="my-10">
-            <h3 class="text-2xl my-4">Promotion <span class="promoSpan"></span></h3>
-            <p>Informations générales de la <span class="promoSpan"></span></p>
-        </div>
-
-        <div class="flex">
-            <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
-            <button onclick="afficherSectionRetars()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] ">Retards</button>
-            <button onclick="afficherSectionAbs()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
-
-            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
-        </div>
-
-        <!-- Table responsive wrapper -->
-        <section class="overflow-x-auto bg-white">
-
-            <!-- Table -->
-            <table class="min-w-full text-left whitespace-nowrap" style="width: 100%;">
-
-                <!-- Table head -->
-                <thead class=" tracking-wider border-b-2 border-black">
-                    <tr>
-                        <th scope="col" class="px-6 py-4 font-bold" style="width: 5%;">
-                            <input type="checkbox">
-                        </th>
-                        <th scope="col" class="px-6 py-4 font-bold" style="width: 16%">
-                            Nom de famille
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 16%">
-                            Prénom
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 20%">
-                            Mail
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 12%">
-                            Compte activé
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 16%">
-                            Rôle
-                        </th>
-                        <th scope=" col" class="px-6 py-4 font-bold" style="width: 15%">
-
-                        </th>
-                    </tr>
-                </thead>
-
-                <!-- Table body -->
-                <tbody class="tableauBodyTablA">
-
-                </tbody>
-
-            </table>
-
-        </section>
+        <?php
+        include __DIR__ . '/Include/Promos/laPromo.php'
+        ?>
     </section>
 
     <section class="VoirRetards hidden m-4 gap-10">
@@ -163,7 +64,7 @@
         </div>
 
         <div class="flex">
-            <button onclick="afficherSectionTabkeauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+            <button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
             <button onclick="afficherSectionRetars()" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Retards</button>
             <button onclick="afficherSectionAbs()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
 
@@ -226,7 +127,7 @@
         </div>
 
         <div class="flex">
-            <button onclick="afficherSectionTabkeauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+            <button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
             <button onclick="afficherSectionRetars()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Retards</button>
             <button onclick="afficherSectionAbs()" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Absences</button>
 
@@ -273,6 +174,18 @@
 
             </table>
         </section>
+    </section>
+
+    <section class="creerPromo hidden m-4 gap-10">
+        <?php
+        include __DIR__ . '/Include/Promos/creerPromo.php'
+        ?>
+    </section>
+
+    <section class="editerPromo hidden m-4 gap-10">
+        <?php
+        include __DIR__ . '/Include/Promos/editerPromo.php'
+        ?>
     </section>
 
 </body>

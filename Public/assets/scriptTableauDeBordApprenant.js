@@ -20,6 +20,8 @@ function heureActuelle(
   idCours,
   signatureEffectuee = 0
 ) {
+  console.log(signatureEffectuee);
+
   let heureActuelle = dateDuJour.getHours();
   let minuteActuelle = dateDuJour.getMinutes();
   let secondeActuelle = dateDuJour.getSeconds();
@@ -176,11 +178,13 @@ function verificationSignature(HeureDebut_cours, HeureFin_cours, idCours) {
 function afficherAccueilApprenant(CoursPromo) {
   CoursPromo.forEach((element) => {
     document.querySelector(".sectionCoursA").innerHTML +=
-      `<section class="flex flex-col bg-[#F8F9FA] rounded-[3px] px-[25px] py-[45px]">
+      `<section class="flex flex-col bg-[#f1f0f0] rounded-[3px] px-[25px] py-[45px]">
                 <div class="flex justify-between">
                     <div>
                         <h2 class="promoApprenant text-[32px]">` +
       element["Nom_promo"] +
+      ` - ` +
+      plageHorraire(element["HeureDebut_cours"]) +
       `</h2>
                         <p class="placePromo my-5">` +
       element["Place_promo"] +
@@ -239,6 +243,14 @@ function afficherAccueilApprenant(CoursPromo) {
       element["Id_cours"]
     );
   });
+}
+
+function plageHorraire(heure) {
+  if (heure == "09:00:00") {
+    return "Matin";
+  } else if (heure == "13:00:00") {
+    return "Après-midi";
+  }
 }
 
 function recupererCoursPromoApprenant() {

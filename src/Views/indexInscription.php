@@ -16,7 +16,7 @@
   ?>
 
   <main class="flex justify-center">
-    <section class=" flex flex-col bg-[#F8F9FA] w-[400px] p-10 gap-10 rounded-[3px] mt-[2%]">
+    <section class=" flex flex-col bg-[#f1f0f0] w-[400px] p-10 gap-10 rounded-[3px] mt-[2%]">
 
       <h1 class="text-[40px] text-center">Bienvenue</h1>
       <p class="text-center text-base leading-[18px]">Pour clôturer votre inscription et créer votre compte, veuillez choisir un mot de passe.</p>
