@@ -24,6 +24,13 @@ class CoursController
         return json_encode($reponse);
     }
 
+    function verificationCodeCours($idCours)
+    {
+        $CoursRepository = new CoursRepository;
+        $reponse = $CoursRepository->verificationCodeCours($idCours);
+        return json_encode($reponse);
+    }
+
     function signatureApprenant($Id_cours, $Code_cours, $Retard = 0)
     {
         if (is_numeric($Code_cours) && strlen($Code_cours) == 5) {

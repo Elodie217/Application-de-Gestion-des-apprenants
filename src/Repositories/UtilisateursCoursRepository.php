@@ -55,13 +55,13 @@ class UtilisateursCoursRepository
         $statement->setFetchMode(PDO::FETCH_CLASS, UtilisateursCours::class);
         $objet = $statement->fetch();
 
-        if ($objet->getAbsenceUtilisateursCours() == NULL && $objet->getRetardUtilisateursCours() == NULL) {
+        if ($objet->getAbsenceUtilisateursCours() !== NULL && $objet->getRetardUtilisateursCours() !== NULL) {
             $reponse = array(
-                'status' => 'aSigner',
+                'status' => 'signe',
             );
         } else {
             $reponse = array(
-                'status' => 'signe',
+                'status' => 'aSigner',
             );
         }
 

@@ -78,6 +78,30 @@ class CoursRepository
         }
     }
 
+    public function verificationCodeCours()
+    {
+        $sql = "SELECT " . PREFIXE . "cours.Code_cours FROM " . PREFIXE . "cours WHERE Id_cours = :Id_cours";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':Id_cours', $idCours);
+
+        $statement->execute();
+        $code = $statement->fetchColumn();
+
+        if ($code !== NULL) {
+            $reponse = array(
+                'status' => 'signe',
+            );
+            return $reponse;
+        } else {
+            $reponse = array(
+                'status' => 'aSigner',
+            );
+
+            return $reponse;
+        }
+    }
+
     public function signatureApprenant($Id_cours, $Code_cours)
     {
 

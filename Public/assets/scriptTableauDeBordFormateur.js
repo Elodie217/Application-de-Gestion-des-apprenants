@@ -18,7 +18,12 @@ if (dateDuJourMois < 9) {
 }
 let dateDuJourAnnee = dateDuJour.getFullYear();
 
-function heureActuelle(heureDebutCoursEntier, heureFinCoursEntier, idCours) {
+function heureActuelle(
+  heureDebutCoursEntier,
+  heureFinCoursEntier,
+  idCours,
+  signatureEffectuee = 0
+) {
   let heureActuelle = dateDuJour.getHours();
   let minuteActuelle = dateDuJour.getMinutes();
   let secondeActuelle = dateDuJour.getSeconds();
@@ -48,14 +53,10 @@ function heureActuelle(heureDebutCoursEntier, heureFinCoursEntier, idCours) {
         minuteActuelle === minuteDonneeFin &&
         secondeActuelle < secondeDonneeFin)
     ) {
+      if (signatureEffectuee == 1) {
+      }
       //Ici le cours est en ce moment
-      afficherBtn(
-        "btnValiserPresence",
-        "btnValiserPresenceDesactive",
-        "btnSignaturesEnCours",
-        "btnSignaturesRecueillies",
-        idCours
-      );
+      signatureFormateur(idCours);
     } else {
       //Ici le cours est fini
       afficherBtn(
@@ -99,7 +100,7 @@ function afficherBtn(
 function afficherAccueil(CoursPromo) {
   CoursPromo.forEach((element) => {
     document.querySelector(".sectionCoursF").innerHTML +=
-      `<section class="flex flex-col bg-[#F8F9FA] rounded-[3px] px-[25px] py-[45px] my-6">
+      `<section class="flex flex-col bg-[#f1f0f0] rounded-[3px] px-[25px] py-[45px] my-6">
        <div class="flex justify-between">
                 <div>
                     <h2 class="promoFormateur text-[32px]">` +
@@ -155,7 +156,12 @@ function afficherAccueil(CoursPromo) {
             
           </section>`;
 
-    heureActuelle(
+    // heureActuelle(
+    //   element["HeureDebut_cours"],
+    //   element["HeureFin_cours"],
+    //   element["Id_cours"]
+    // );
+    verificationCreaCode(
       element["HeureDebut_cours"],
       element["HeureFin_cours"],
       element["Id_cours"]
@@ -218,6 +224,38 @@ function signatureFormateur(Id_cours) {
       console.log(code);
 
       document.querySelector(".codeCours" + Id_cours).innerHTML = code;
+    });
+}
+
+//Vérification création code
+function verificationCreaCode(HeureDebut_cours, HeureFin_cours, idCours) {
+  let Cours = {
+    Id_cours: idCours,
+  };
+
+  let params = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(Cours),
+  };
+
+  fetch(
+    "http://applicationgestionapprenants2/public/tableaudebordFormateur/accueil/verifcodecreer",
+    params
+  )
+    .then((res) => res.text())
+    .then((data) => {
+      console.log(data);
+      let messageRetour = JSON.parse(data);
+      if (messageRetour["status"] == "signe") {
+        console.log(messageRetour);
+        heureActuelle(HeureDebut_cours, HeureFin_cours, idCours, 1);
+      } else {
+        console.log(messageRetour);
+        heureActuelle(HeureDebut_cours, HeureFin_cours, idCours);
+      }
     });
 }
 
