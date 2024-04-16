@@ -1,14 +1,17 @@
  <div class="flex">
      <button onclick="afficherSectionAccueil()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Accueil</button>
      <button onclick="afficherSectionPromotions()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Promotions</button>
-     <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Utilisateurs</button>
 
      <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
  </div>
+
  <div class="my-10">
-     <h3 class="text-2xl my-4">Promotion <span class="promoSpan"></span></h3>
+     <div class="divBtnCreaApprenant flex justify-between">
+
+     </div>
      <p>Informations générales de la <span class="promoSpan"></span></p>
  </div>
+
 
  <div class="flex">
      <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>

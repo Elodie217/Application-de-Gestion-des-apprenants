@@ -54,9 +54,17 @@ function heureActuelle(
         secondeActuelle < secondeDonneeFin)
     ) {
       if (signatureEffectuee == 1) {
+        signatureFormateur(idCours);
+      } else {
+        //Ici le cours est en ce moment
+        afficherBtn(
+          "btnValiserPresence",
+          "btnValiserPresenceDesactive",
+          "btnSignaturesEnCours",
+          "btnSignaturesRecueillies",
+          idCours
+        );
       }
-      //Ici le cours est en ce moment
-      signatureFormateur(idCours);
     } else {
       //Ici le cours est fini
       afficherBtn(
@@ -221,7 +229,6 @@ function signatureFormateur(Id_cours) {
     .then((res) => res.json())
     .then((data) => {
       let code = JSON.parse(data);
-      console.log(code);
 
       document.querySelector(".codeCours" + Id_cours).innerHTML = code;
     });
@@ -247,13 +254,10 @@ function verificationCreaCode(HeureDebut_cours, HeureFin_cours, idCours) {
   )
     .then((res) => res.text())
     .then((data) => {
-      console.log(data);
       let messageRetour = JSON.parse(data);
       if (messageRetour["status"] == "signe") {
-        console.log(messageRetour);
         heureActuelle(HeureDebut_cours, HeureFin_cours, idCours, 1);
       } else {
-        console.log(messageRetour);
         heureActuelle(HeureDebut_cours, HeureFin_cours, idCours);
       }
     });

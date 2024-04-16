@@ -20,8 +20,6 @@ function heureActuelle(
   idCours,
   signatureEffectuee = 0
 ) {
-  console.log(signatureEffectuee);
-
   let heureActuelle = dateDuJour.getHours();
   let minuteActuelle = dateDuJour.getMinutes();
   let secondeActuelle = dateDuJour.getSeconds();
@@ -51,7 +49,6 @@ function heureActuelle(
         minuteActuelle === minuteDonneeFin &&
         secondeActuelle < secondeDonneeFin)
     ) {
-      console.log(heureActuelle, minuteActuelle + 15, secondeActuelle);
       if (
         heureActuelle > heureDonneeHDebut ||
         (heureActuelle === heureDonneeHDebut &&
@@ -165,7 +162,6 @@ function verificationSignature(HeureDebut_cours, HeureFin_cours, idCours) {
     .then((data) => {
       let messageRetour = JSON.parse(data);
       if (messageRetour["status"] == "signe") {
-        console.log(messageRetour);
         heureActuelle(HeureDebut_cours, HeureFin_cours, idCours, 1);
       } else {
         heureActuelle(HeureDebut_cours, HeureFin_cours, idCours);
@@ -260,7 +256,6 @@ function recupererCoursPromoApprenant() {
     .then((res) => res.text())
     .then((data) => {
       courspromo = JSON.parse(data);
-      console.log(courspromo);
       afficherAccueilApprenant(courspromo);
     });
 }
@@ -294,7 +289,6 @@ function validerPresenceA(idCours) {
       .then((res) => res.text())
       .then((data) => {
         let messageRetour = JSON.parse(data);
-        console.log(messageRetour);
         presenceValidee(messageRetour, idCours);
       });
   } else {
@@ -343,7 +337,6 @@ function validerPresenceARetard(idCours) {
     .then((res) => res.text())
     .then((data) => {
       let messageRetour = JSON.parse(data);
-      console.log(messageRetour);
       presenceValidee(messageRetour, idCours);
     });
 }

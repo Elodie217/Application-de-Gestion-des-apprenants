@@ -180,6 +180,39 @@ switch ($route) {
                             echo $PromoController->afficherPromos();
                             die;
                     }
+
+                case $routeComposee[1] == "apprenants":
+                    switch ($route) {
+                        case $routeComposee[2] == "newapprenant":
+                            $data = file_get_contents("php://input");
+
+                            $Apprenant = json_decode($data, true);
+
+                            echo $UtilisateurController->creerApprenant($Apprenant['nomApprenant'], $Apprenant['prenomApprenant'], $Apprenant['emailApprenant'], $Apprenant['roleApprenant'], $Apprenant['idPromo']);
+                            die;
+                        case $routeComposee[2] == "affichereditapprenant":
+                            $data = file_get_contents("php://input");
+
+                            $Apprenant = json_decode($data, true);
+                            echo $UtilisateurController->recupererApprenant($Apprenant['idApprenant']);
+                            die;
+                        case $routeComposee[2] == "editapprenant":
+                            $data = file_get_contents("php://input");
+
+                            $Apprenant = json_decode($data, true);
+
+                            echo $UtilisateurController->editApprenant($Apprenant['Id_utilisateur'], $Apprenant['nomApprenantEdit'], $Apprenant['prenomApprenantEdit'], $Apprenant['emailApprenantEdit'], $Apprenant['compteApprenantEdit']);
+                            die;
+                        case $routeComposee[2] == "supprappr":
+                            $data = file_get_contents("php://input");
+
+                            $Apprenant = json_decode($data, true);
+
+                            echo $UtilisateurController->supprApprenant($Apprenant['Id_apprenant']);
+                            die;
+                        default:
+                            //Là faudrait mettre la où on affiche tous les apprenants
+                    }
                 default:
                     $TableauController->indexFormateur();
 
