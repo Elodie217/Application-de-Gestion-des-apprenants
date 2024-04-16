@@ -96,22 +96,24 @@ class UtilisateurRepository
             if ($statement->execute()) {
                 $reponse = array(
                     'status' => 'success',
-                    'message' => "Nouveau apprenant enregistré !"
+                    'message' => "Nouveau apprenant enregistré !",
+                    'idApprenant' => $lastInsertedId
                 );
+                return $reponse;
             } else {
                 $reponse = array(
                     'status' => 'error',
                     'message' => "Une erreur est survenue."
                 );
+                return $reponse;
             }
         } else {
             $reponse = array(
                 'status' => 'error',
                 'message' => "Une erreur est survenue."
             );
+            return $reponse;
         }
-
-        return $reponse;
     }
 
     public function recupererApprenant($idApprenant)

@@ -358,7 +358,7 @@ function remplirValueEdit(promo) {
             <div class="messageErreurEditPromo text-[#ff0000] text-center text-lg"> </div>
 
             <div class="flex justify-between">
-                <button class="btnRetourEditPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="fermerEditPromo()">
+                <button class="btnRetourEditPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 my-4" onclick="fermerEditPromo()">
                     Retour
                 </button>
                 <div class="flex">
@@ -486,14 +486,4 @@ function supprimerPromo(idPromo) {
     .then((data) => {
       reponseEditPromo(JSON.parse(data));
     });
-}
-
-//////////////// Retards ////////////////
-function afficherSectionRetars() {
-  afficherSection("VoirRetards", "VoirAbsences", "VoirPromotion", "Promotions");
-}
-
-//////////////// Abs ////////////////
-function afficherSectionAbs() {
-  afficherSection("VoirAbsences", "VoirPromotion", "Promotions", "VoirRetards");
 }

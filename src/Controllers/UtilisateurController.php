@@ -79,7 +79,13 @@ class UtilisateurController
 
                 $utilisateurRepository = new UtilisateurRepository;
                 $reponse = $utilisateurRepository->sauvegarderApprenant($nomApprenant, $prenomApprenant, $emailApprenant, $roleApprenant, $idPromo);
-                return json_encode($reponse);
+
+                $id = $reponse['idApprenant'];
+
+                if ($this->emailInscription($emailApprenant, $nomApprenant, $prenomApprenant, $id)) {
+
+                    return json_encode($reponse);
+                }
             } else {
                 $response = array(
                     'status' => 'error',
@@ -95,6 +101,34 @@ class UtilisateurController
             );
             return json_encode($response);
             die;
+        }
+    }
+
+    public function emailInscription($email, $nom, $prenom, $id)
+    {
+        $to      = 'elodie.grienay.simplon@gmail.com';
+        // $to      = $email;
+        $subject = 'Inscription Simplon';
+        $message = '<html>
+        Bonjour ' . $nom . ' ' . $prenom . '! 
+        
+        Afin de créer votre espace personne vous pouvez des à présence cliquer sur <a href="http://applicationgestionapprenants2/public/sinscrire/' . $id . '">ce lien</a> afin de créer votre mot de passe.
+        
+        A bientôt chez Simplon !
+        </html>';
+
+        $headers = 'MIME-Version: 1.0' . "\r\n" .
+            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'From: email@envoi.fr' . "\r\n" .
+            'Reply-To: email@envoi.fr' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        $test = mail($to, $subject, $message, $headers);
+
+        if ($test) {
+            return true;
+        } else {
+            var_dump($test);
         }
     }
 

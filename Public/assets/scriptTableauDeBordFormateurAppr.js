@@ -3,7 +3,7 @@ function afficherCreaApprenant(idPromo, nomPromo) {
   document.querySelector(".creerApprenant").classList.remove("hidden");
 
   document.querySelector(".btnsCreaApprenant").innerHTML =
-    `<button class="btnRetourCreaApprenant py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="fermercreerApprenant()">
+    `<button class="btnRetourCreaApprenant py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 my-4" onclick="fermercreerApprenant()">
               Retour
           </button>
           <button class="btnSauvegarderCreaApprenant py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="verifChampsApprenant(` +
@@ -181,7 +181,7 @@ function remplirValueEditApp(apprenant, idPromo, nomPromo) {
     <div class="messageErreurEditApprenant text-[#ff0000] text-center text-lg"> </div>
 
     <div class="flex justify-between">
-                <button class="btnRetourEditPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="fermerEditApprenant()">
+                <button class="btnRetourEditPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 my-4" onclick="fermerEditApprenant()">
                     Retour
                 </button>
                 <div class="flex">

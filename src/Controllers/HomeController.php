@@ -31,6 +31,17 @@ class HomeController
         }
     }
 
+    public function pageInscription()
+    {
+        if (isset($_GET['erreur'])) {
+            $erreur = htmlspecialchars($_GET['erreur']);
+        } else {
+            $erreur = '';
+        }
+
+        $this->render("inscription", ["erreur" => $erreur]);
+    }
+
     public function deconnexion()
     {
         session_destroy();

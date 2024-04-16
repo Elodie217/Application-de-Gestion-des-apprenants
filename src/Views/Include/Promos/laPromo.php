@@ -15,7 +15,7 @@
 
  <div class="flex">
      <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
-     <button onclick="afficherSectionRetars()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] ">Retards</button>
+     <button onclick="afficherSectionRetards()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] ">Retards</button>
      <button onclick="afficherSectionAbs()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
 
      <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
@@ -60,7 +60,7 @@
          </tbody>
 
      </table>
-     <button class="btnRetourLaPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="fermerLaPromo()">
+     <button class="btnRetourLaPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 my-4" onclick="fermerLaPromo()">
          Retour
      </button>
  </section>

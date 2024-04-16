@@ -22,7 +22,7 @@
      <div class="messageErreurCreaPromo text-[#ff0000] text-center text-lg"> </div>
 
      <div class="flex justify-between">
-         <button class="btnRetourCreaPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="fermercreerPromo()">
+         <button class="btnRetourCreaPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 my-4" onclick="fermercreerPromo()">
              Retour
          </button>
          <button class="btnSauvegarderCreaPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="verifChampsPromo()">
