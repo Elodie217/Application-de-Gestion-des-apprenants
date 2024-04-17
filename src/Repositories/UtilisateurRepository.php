@@ -16,6 +16,20 @@ class UtilisateurRepository
         $this->db = $database->getDB();
     }
 
+    public function inscription($mdpInscription, $idUser)
+    {
+        $sql = "UPDATE " . PREFIXE . "utilisateur SET MotDePasse_utilisateur = :mdpInscription WHERE Id_utilisateur = :idUser";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':mdpInscription', $mdpInscription);
+        $statement->bindParam(':idUser', $idUser);
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function connexion(string $email, string $motDePasse)
     {

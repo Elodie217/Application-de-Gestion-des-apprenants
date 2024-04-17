@@ -34,8 +34,8 @@ switch ($route) {
             die;
         } else {
             $HomeController->index();
+            die;
         }
-        break;
 
     case HOME_URL . 'connexion':
 
@@ -50,15 +50,33 @@ switch ($route) {
 
         echo json_encode($reponse);
 
-        break;
+        die;
 
     case $routeComposee[0] == 'sinscrire':
 
+        switch ($route) {
+            case $routeComposee[1] == "inscription":
 
-        $HomeController->pageInscription();
+                $data = file_get_contents("php://input");
 
+                $user = json_decode($data, true);
 
-        break;
+                $mdpInscription = htmlspecialchars(strip_tags(trim($user["mdpInscription"])));
+                $mdpConfirmation = htmlspecialchars(strip_tags(trim($user["mdpConfirmation"])));
+                $idUSer = $user["fin_url"];
+
+                $reponse = $UtilisateurController->inscription($mdpInscription, $mdpConfirmation, $idUSer);
+
+                echo $reponse;
+
+                die;
+
+            default:
+                $HomeController->pageInscription();
+
+                die;
+        }
+
 
     case HOME_URL . 'tableaudebord':
         if (isset($_SESSION["connecté"]) && $_SESSION['role'] == 1) {

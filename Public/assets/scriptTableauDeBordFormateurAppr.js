@@ -155,6 +155,40 @@ function recupererValueApprenant(idApprenant, idPromo, nomPromo) {
 }
 
 function remplirValueEditApp(apprenant, idPromo, nomPromo) {
+  document.querySelector(".divBtnSousMenuTableau").innerHTML =
+    `  <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+     <button onclick="afficherSectionRetards(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] ">Retards</button>
+     <button onclick="afficherSectionAbs(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
+
+     <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>`;
+
+  document.querySelector(".divBtnSousMenuRetards").innerHTML =
+    `<button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+            <button onclick="afficherSectionRetards(` +
+    idPromo +
+    `)" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Retards</button>
+            <button onclick="afficherSectionAbs(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
+
+            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>`;
+
+  document.querySelector(".divBtnSousMenuABS").innerHTML =
+    `
+  <button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+            <button onclick="afficherSectionRetards(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Retards</button>
+            <button onclick="afficherSectionAbs(` +
+    idPromo +
+    `)" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Absences</button>
+
+            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>`;
+
   document.querySelector(".editerApprenantForm").innerHTML =
     `<label class="my-2" for="nomApprenantEdit">Nom</label>
     <input class="mb-5 border-[#CED4DA] border-[1px] px-3 py-1.5" type="text" id='nomApprenantEdit' name="nomApprenantEdit" value=` +
@@ -293,7 +327,7 @@ function editApprenant(
 }
 
 // console.log(HOME_URL);
-//////////////// Supprimer Promo ////////////////
+//////////////// Supprimer Apprenant ////////////////
 
 function supprimerApprenant(idApprenant, idPromo, nomPromo) {
   let apprenant = {

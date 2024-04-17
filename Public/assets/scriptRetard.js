@@ -1,5 +1,5 @@
 //////////////// Retards ////////////////
-function afficherSectionRetards() {
+function afficherSectionRetards(idPromo) {
   afficherSection("VoirRetards", "VoirAbsences", "VoirPromotion", "Promotions");
 
   //   recupererRetards(){}

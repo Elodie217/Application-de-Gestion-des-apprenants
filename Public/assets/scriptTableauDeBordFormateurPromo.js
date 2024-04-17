@@ -132,8 +132,6 @@ function afficherApprenants(Apprenants, idPromo, nomPromo) {
   });
 }
 
-// supprimerApprenant()
-
 function afficherCompteActive(compteActive) {
   if (compteActive == 1) {
     return "Oui";

@@ -32,11 +32,12 @@
             </div>
 
             <button class="py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit m-auto font-bold" onclick="verificationInscription()">Sauvegarder</button>
-            <div class="messageErreurConnexion text-[#ff0000] text-center text-lg"> </div>
+            <div class="messageErreurInscription text-[#ff0000] text-center text-lg"> </div>
 
     </main>
     </section>
 </body>
 <script src=" https://cdn.tailwindcss.com"></script>
+<script src="../../Public/assets/scriptInscription.js"></script>
 
 </html>

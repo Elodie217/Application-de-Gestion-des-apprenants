@@ -7,7 +7,6 @@ use src\Repositories\UtilisateurRepository;
 class UtilisateurController
 {
 
-
     public function connexion()
     {
         if (isset($_POST)) {
@@ -56,6 +55,63 @@ class UtilisateurController
                 echo json_encode($response);
                 die();
             }
+        }
+    }
+
+    public function inscription($mdpInscription, $mdpConfirmation, $idUSer)
+    {
+
+        if (isset($mdpInscription) && !empty($mdpInscription) && isset($mdpConfirmation) && !empty($mdpConfirmation) && isset($idUSer) && !empty($idUSer)) {
+
+            $utilisateurRepository = new UtilisateurRepository();
+
+            if (strlen($mdpInscription) >= 6 && strlen($mdpConfirmation) >= 6) {
+
+                if ($mdpInscription == $mdpConfirmation) {
+
+                    $mdpInscriptionHash = password_hash($mdpInscription, PASSWORD_DEFAULT);
+                    $idUSer = htmlspecialchars($idUSer);
+
+
+                    if ($utilisateurRepository->inscription($mdpInscriptionHash, $idUSer)) {
+                        $response = array(
+                            'status' => 'success',
+                            'message' => 'Votre compte a été créé.'
+                        );
+
+                        echo json_encode($response);
+                        die();
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => "Une erreur s'est produite."
+                        );
+                        echo json_encode($response);
+                        die();
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Les mots de passe sont différents.'
+                    );
+                    echo json_encode($response);
+                    die();
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le mot de passe doit contenir au moins 6 caractères.'
+                );
+                echo json_encode($response);
+                die();
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs.'
+            );
+            echo json_encode($response);
+            die();
         }
     }
 

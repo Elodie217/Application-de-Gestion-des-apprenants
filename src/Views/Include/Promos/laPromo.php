@@ -13,12 +13,12 @@
  </div>
 
 
- <div class="flex">
-     <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+ <div class="flex divBtnSousMenuTableau">
+     <!-- <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
      <button onclick="afficherSectionRetards()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] ">Retards</button>
      <button onclick="afficherSectionAbs()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
 
-     <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
+     <div class="w-full border-b-[1px] border-[#DEE2E6]"></div> -->
  </div>
 
  <!-- Table responsive wrapper -->
