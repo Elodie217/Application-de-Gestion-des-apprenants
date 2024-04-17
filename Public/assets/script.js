@@ -1,4 +1,5 @@
 let messageErreurConnexion = document.querySelector(".messageErreurConnexion");
+
 function verificationconnexion() {
   let email = document.querySelector("#email").value;
   let mdp = document.querySelector("#motDePasse").value;

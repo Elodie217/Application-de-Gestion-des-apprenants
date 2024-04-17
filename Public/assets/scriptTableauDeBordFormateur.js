@@ -164,11 +164,6 @@ function afficherAccueil(CoursPromo) {
             
           </section>`;
 
-    // heureActuelle(
-    //   element["HeureDebut_cours"],
-    //   element["HeureFin_cours"],
-    //   element["Id_cours"]
-    // );
     verificationCreaCode(
       element["HeureDebut_cours"],
       element["HeureFin_cours"],

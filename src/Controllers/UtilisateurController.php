@@ -7,7 +7,6 @@ use src\Repositories\UtilisateurRepository;
 class UtilisateurController
 {
 
-
     public function connexion()
     {
         if (isset($_POST)) {
@@ -59,6 +58,63 @@ class UtilisateurController
         }
     }
 
+    public function inscription($mdpInscription, $mdpConfirmation, $idUSer)
+    {
+
+        if (isset($mdpInscription) && !empty($mdpInscription) && isset($mdpConfirmation) && !empty($mdpConfirmation) && isset($idUSer) && !empty($idUSer)) {
+
+            $utilisateurRepository = new UtilisateurRepository();
+
+            if (strlen($mdpInscription) >= 6 && strlen($mdpConfirmation) >= 6) {
+
+                if ($mdpInscription == $mdpConfirmation) {
+
+                    $mdpInscriptionHash = password_hash($mdpInscription, PASSWORD_DEFAULT);
+                    $idUSer = htmlspecialchars($idUSer);
+
+
+                    if ($utilisateurRepository->inscription($mdpInscriptionHash, $idUSer)) {
+                        $response = array(
+                            'status' => 'success',
+                            'message' => 'Votre compte a été créé.'
+                        );
+
+                        echo json_encode($response);
+                        die();
+                    } else {
+                        $response = array(
+                            'status' => 'error',
+                            'message' => "Une erreur s'est produite."
+                        );
+                        echo json_encode($response);
+                        die();
+                    }
+                } else {
+                    $response = array(
+                        'status' => 'error',
+                        'message' => 'Les mots de passe sont différents.'
+                    );
+                    echo json_encode($response);
+                    die();
+                }
+            } else {
+                $response = array(
+                    'status' => 'error',
+                    'message' => 'Le mot de passe doit contenir au moins 6 caractères.'
+                );
+                echo json_encode($response);
+                die();
+            }
+        } else {
+            $response = array(
+                'status' => 'error',
+                'message' => 'Merci de remplir tous les champs.'
+            );
+            echo json_encode($response);
+            die();
+        }
+    }
+
     public function ApprenantsByIdPromo($idPromo)
     {
         $utilisateurRepository = new UtilisateurRepository;
@@ -79,7 +135,13 @@ class UtilisateurController
 
                 $utilisateurRepository = new UtilisateurRepository;
                 $reponse = $utilisateurRepository->sauvegarderApprenant($nomApprenant, $prenomApprenant, $emailApprenant, $roleApprenant, $idPromo);
-                return json_encode($reponse);
+
+                $id = $reponse['idApprenant'];
+
+                if ($this->emailInscription($emailApprenant, $nomApprenant, $prenomApprenant, $id)) {
+
+                    return json_encode($reponse);
+                }
             } else {
                 $response = array(
                     'status' => 'error',
@@ -95,6 +157,34 @@ class UtilisateurController
             );
             return json_encode($response);
             die;
+        }
+    }
+
+    public function emailInscription($email, $nom, $prenom, $id)
+    {
+        $to      = 'elodie.grienay.simplon@gmail.com';
+        // $to      = $email;
+        $subject = 'Inscription Simplon';
+        $message = '<html>
+        Bonjour ' . $nom . ' ' . $prenom . '! 
+        
+        Afin de créer votre espace personne vous pouvez des à présence cliquer sur <a href="http://applicationgestionapprenants2/public/sinscrire/' . $id . '">ce lien</a> afin de créer votre mot de passe.
+        
+        A bientôt chez Simplon !
+        </html>';
+
+        $headers = 'MIME-Version: 1.0' . "\r\n" .
+            'Content-type: text/html; charset=iso-8859-1' . "\r\n" .
+            'From: email@envoi.fr' . "\r\n" .
+            'Reply-To: email@envoi.fr' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        $test = mail($to, $subject, $message, $headers);
+
+        if ($test) {
+            return true;
+        } else {
+            var_dump($test);
         }
     }
 

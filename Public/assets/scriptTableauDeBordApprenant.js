@@ -105,6 +105,10 @@ function heureActuelle(
       }
     } else {
       //Ici le cours est fini
+      document
+        .querySelector(".CodeApprenant" + idCours)
+        .classList.add("hidden");
+
       afficherBtn(
         "signatureValidee",
         "btnValiderAppr",

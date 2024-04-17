@@ -16,6 +16,20 @@ class UtilisateurRepository
         $this->db = $database->getDB();
     }
 
+    public function inscription($mdpInscription, $idUser)
+    {
+        $sql = "UPDATE " . PREFIXE . "utilisateur SET MotDePasse_utilisateur = :mdpInscription WHERE Id_utilisateur = :idUser";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':mdpInscription', $mdpInscription);
+        $statement->bindParam(':idUser', $idUser);
+
+        if ($statement->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public function connexion(string $email, string $motDePasse)
     {
@@ -96,22 +110,24 @@ class UtilisateurRepository
             if ($statement->execute()) {
                 $reponse = array(
                     'status' => 'success',
-                    'message' => "Nouveau apprenant enregistré !"
+                    'message' => "Nouveau apprenant enregistré !",
+                    'idApprenant' => $lastInsertedId
                 );
+                return $reponse;
             } else {
                 $reponse = array(
                     'status' => 'error',
                     'message' => "Une erreur est survenue."
                 );
+                return $reponse;
             }
         } else {
             $reponse = array(
                 'status' => 'error',
                 'message' => "Une erreur est survenue."
             );
+            return $reponse;
         }
-
-        return $reponse;
     }
 
     public function recupererApprenant($idApprenant)
