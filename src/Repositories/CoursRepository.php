@@ -78,7 +78,7 @@ class CoursRepository
         }
     }
 
-    public function verificationCodeCours()
+    public function verificationCodeCours($idCours)
     {
         $sql = "SELECT " . PREFIXE . "cours.Code_cours FROM " . PREFIXE . "cours WHERE Id_cours = :Id_cours";
 

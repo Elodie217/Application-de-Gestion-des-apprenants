@@ -22,7 +22,7 @@
         <div class="flex">
             <button onclick="afficherSectionAccueil()" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Accueil</button>
             <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]" onclick="afficherSectionPromotions()">Promotions</button>
-            <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Utilisateurs</button>
+
 
             <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
         </div>
@@ -54,7 +54,7 @@
         <div class="flex">
             <button onclick="afficherSectionAccueil()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Accueil</button>
             <button onclick="afficherSectionPromotions()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Promotions</button>
-            <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Utilisateurs</button>
+
 
             <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
         </div>
@@ -117,7 +117,7 @@
         <div class="flex">
             <button onclick="afficherSectionAccueil()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Accueil</button>
             <button onclick="afficherSectionPromotions()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Promotions</button>
-            <button class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Utilisateurs</button>
+
 
             <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>
         </div>
@@ -188,9 +188,23 @@
         ?>
     </section>
 
+    <section class="creerApprenant hidden m-4 gap-10">
+        <?php
+        include __DIR__ . '/Include/Apprenants/creerApprenant.php'
+        ?>
+    </section>
+
+    <section class="editApprenant hidden m-4 gap-10">
+        <?php
+        include __DIR__ . '/Include/Apprenants/editerApprenant.php'
+        ?>
+    </section>
+
+
 </body>
 <script src=" https://cdn.tailwindcss.com"></script>
 <script src="../../Public/assets/scriptTableauDeBordFormateur.js"></script>
 <script src="../../Public/assets/scriptTableauDeBordFormateurPromo.js"></script>
+<script src="../../Public/assets/scriptTableauDeBordFormateurAppr.js"></script>
 
 </html>

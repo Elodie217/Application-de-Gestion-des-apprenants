@@ -77,7 +77,17 @@ function afficherSectionTableauA() {
   afficherSection("VoirPromotion", "Promotions", "VoirRetards", "VoirAbsences");
 }
 
-function afficherApprenants(Apprenants) {
+function afficherApprenants(Apprenants, idPromo, nomPromo) {
+  document.querySelector(".divBtnCreaApprenant").innerHTML =
+    `<h3 class="text-2xl my-4">Promotion <span class="promoSpan"></span></h3>
+     <button class="btnSauvegarderCreaPromo py-1.5 px-3 bg-[#198754] gap-2 rounded text-white w-fit font-bold right-0 mt-4 h-fit" onclick="afficherCreaApprenant(` +
+    idPromo +
+    `, '` +
+    nomPromo +
+    `')">
+             Ajouter apprenant
+         </button>`;
+
   document.querySelector(".tableauBodyTablA").innerHTML = ``;
 
   Apprenants.forEach((element) => {
@@ -101,8 +111,20 @@ function afficherApprenants(Apprenants) {
       element["Id_utilisateur"] +
       ` px-6 py-4"></td>
                         <td class="px-6 py-4">
-                            <button class="text-[#0D6EFD] mx-2">Editer</button>
-                            <button class="text-[#0D6EFD] mx-2">Supprimer</button>
+                            <button class="text-[#0D6EFD] mx-2" onclick="afficherEditApprenant(` +
+      element["Id_utilisateur"] +
+      `, ` +
+      idPromo +
+      `, '` +
+      nomPromo +
+      `')">Editer</button>
+                            <button class="text-[#0D6EFD] mx-2" onclick="supprimerApprenant(` +
+      element["Id_utilisateur"] +
+      `, ` +
+      idPromo +
+      `, '` +
+      nomPromo +
+      `')">Supprimer</button>
                         </td>
                     </tr>`;
 
@@ -110,8 +132,10 @@ function afficherApprenants(Apprenants) {
   });
 }
 
+// supprimerApprenant()
+
 function afficherCompteActive(compteActive) {
-  if ((compteActive = 1)) {
+  if (compteActive == 1) {
     return "Oui";
   } else {
     return "Non";
@@ -147,7 +171,7 @@ function voirPromo(idPromo, nomPromo) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      afficherApprenants(data);
+      afficherApprenants(data, idPromo, nomPromo);
     });
 }
 
@@ -158,7 +182,6 @@ function recupererRoles(idRoleApprenant, idApprenant) {
     .then((res) => res.text())
     .then((data) => {
       let roles = JSON.parse(data);
-      console.log(roles);
       let role = roles.find((element) => element["Id_role"] == idRoleApprenant);
       if (role) {
         document.querySelector(".Role" + idApprenant).innerHTML =
@@ -335,13 +358,11 @@ function remplirValueEdit(promo) {
             <div class="messageErreurEditPromo text-[#ff0000] text-center text-lg"> </div>
 
             <div class="flex justify-between">
-                <button class="btnRetourEditPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="supprimerPromo(` +
-    promo["Id_promo"] +
-    `)">
+                <button class="btnRetourEditPromo py-1.5 px-3 bg-[#0D6EFD] gap-2 rounded text-white w-fit font-bold right-0 mt-4" onclick="fermerEditPromo()">
                     Retour
                 </button>
                 <div class="flex">
-                    <button class="btnSupprPromo py-1.5 px-3 bg-[#ff0000] gap-2 rounded text-white w-fit font-bold right-0 mt-4 mx-6" onclick="verifChampsEditPromo(` +
+                    <button class="btnSupprPromo py-1.5 px-3 bg-[#ff0000] gap-2 rounded text-white w-fit font-bold right-0 mt-4 mx-6" onclick="supprimerPromo(` +
     promo["Id_promo"] +
     `)">
                         Supprimer
@@ -423,6 +444,25 @@ function editerPromo(
     });
 }
 
+function reponseEditPromo(reponse) {
+  if (reponse["status"] == "success") {
+    document.querySelector(".messageReussite").innerText = reponse["message"];
+
+    document.querySelector(".messageReussite").classList.remove("hidden");
+    setTimeout(() => {
+      document.querySelector(".messageReussite").classList.add("hidden");
+    }, 4000);
+
+    recupererPromos();
+
+    document.querySelector(".Promotions").classList.remove("hidden");
+    document.querySelector(".creerPromo").classList.add("hidden");
+    document.querySelector(".editerPromo").classList.add("hidden");
+  } else if (reponse["status"] == "error") {
+    document.querySelector(".messageErreurCreaPromo").innerText =
+      reponse["message"];
+  }
+}
 //////////////// Supprimer Promo ////////////////
 
 function supprimerPromo(idPromo) {
@@ -446,26 +486,6 @@ function supprimerPromo(idPromo) {
     .then((data) => {
       reponseEditPromo(JSON.parse(data));
     });
-}
-
-function reponseEditPromo(reponse) {
-  if (reponse["status"] == "success") {
-    document.querySelector(".messageReussite").innerText = reponse["message"];
-
-    document.querySelector(".messageReussite").classList.remove("hidden");
-    setTimeout(() => {
-      document.querySelector(".messageReussite").classList.add("hidden");
-    }, 4000);
-
-    recupererPromos();
-
-    document.querySelector(".Promotions").classList.remove("hidden");
-    document.querySelector(".creerPromo").classList.add("hidden");
-    document.querySelector(".editerPromo").classList.add("hidden");
-  } else if (reponse["status"] == "error") {
-    document.querySelector(".messageErreurCreaPromo").innerText =
-      reponse["message"];
-  }
 }
 
 //////////////// Retards ////////////////
