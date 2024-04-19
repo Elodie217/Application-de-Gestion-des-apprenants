@@ -184,9 +184,7 @@ function afficherAccueil(CoursPromo) {
 
 recupererCoursPromo();
 function recupererCoursPromo() {
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/accueil"
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/accueil")
     .then((res) => res.text())
     .then((data) => {
       courspromo = JSON.parse(data);
@@ -217,10 +215,7 @@ function signatureFormateur(Id_cours) {
     body: JSON.stringify(Cours),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/accueil/code",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/accueil/code", params)
     .then((res) => res.json())
     .then((data) => {
       let code = JSON.parse(data);
@@ -243,10 +238,7 @@ function verificationCreaCode(HeureDebut_cours, HeureFin_cours, idCours) {
     body: JSON.stringify(Cours),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/accueil/verifcodecreer",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/accueil/verifcodecreer", params)
     .then((res) => res.text())
     .then((data) => {
       let messageRetour = JSON.parse(data);
@@ -260,11 +252,11 @@ function verificationCreaCode(HeureDebut_cours, HeureFin_cours, idCours) {
 
 //Deconnexion
 function deconnexion() {
-  fetch("http://applicationgestionapprenants2/public/deconnexion")
+  fetch(HOME_URL + "deconnexion")
     .then((res) => res.text())
     .then((data) => {
       if (data) {
-        window.location.href = `http://applicationgestionapprenants2/public/`;
+        window.location.href = HOME_URL + ``;
       }
     });
 }

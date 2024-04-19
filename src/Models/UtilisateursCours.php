@@ -94,4 +94,9 @@ class UtilisateursCours
 
         return $this;
     }
+
+    public function getObjectToArray(): array
+    {
+        return ['Id_cours' => $this->getIdCours(), 'Id_utilisateur' => $this->getIdUtilisateur(), 'Absence_UtilisateursCours' => $this->getAbsenceUtilisateursCours(), 'Retard_UtilisateursCours' => $this->getRetardUtilisateursCours()];
+    }
 }

@@ -158,10 +158,7 @@ function verificationSignature(HeureDebut_cours, HeureFin_cours, idCours) {
     body: JSON.stringify(Cours),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordApprenant/accueil/verifsignature",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordApprenant/accueil/verifsignature", params)
     .then((res) => res.text())
     .then((data) => {
       let messageRetour = JSON.parse(data);
@@ -254,9 +251,7 @@ function plageHorraire(heure) {
 }
 
 function recupererCoursPromoApprenant() {
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordApprenant/accueil"
-  )
+  fetch(HOME_URL + "tableaudebordApprenant/accueil")
     .then((res) => res.text())
     .then((data) => {
       courspromo = JSON.parse(data);
@@ -286,10 +281,7 @@ function validerPresenceA(idCours) {
       body: JSON.stringify(Cours),
     };
 
-    fetch(
-      "http://applicationgestionapprenants2/public/tableaudebordApprenant/accueil/code",
-      params
-    )
+    fetch(HOME_URL + "tableaudebordApprenant/accueil/code", params)
       .then((res) => res.text())
       .then((data) => {
         let messageRetour = JSON.parse(data);
@@ -334,10 +326,7 @@ function validerPresenceARetard(idCours) {
     body: JSON.stringify(Cours),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordApprenant/accueil/codeRetard",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordApprenant/accueil/codeRetard", params)
     .then((res) => res.text())
     .then((data) => {
       let messageRetour = JSON.parse(data);
@@ -347,11 +336,11 @@ function validerPresenceARetard(idCours) {
 
 //Deconnexion
 function deconnexion() {
-  fetch("http://applicationgestionapprenants2/public/deconnexion")
+  fetch(HOME_URL + "deconnexion")
     .then((res) => res.text())
     .then((data) => {
       if (data) {
-        window.location.href = `http://applicationgestionapprenants2/public/`;
+        window.location.href = HOME_URL + ``;
       }
     });
 }

@@ -2,12 +2,11 @@
 
 En cours :
 
-- email inscription
+- Mise en ligne (MDR) j'arrive à trouver ma page de connexion
+- création /édition Retards
 
 A faire :
 
-- création /édition Retard
 - email retard
-- la/les function/s supprimer marche pas
 
 Si tout ça est fait alors on sera pas mal !

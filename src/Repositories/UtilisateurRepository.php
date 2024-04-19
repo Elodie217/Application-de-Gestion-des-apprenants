@@ -173,7 +173,7 @@ class UtilisateurRepository
     public function supprApprenant($Id_apprenant)
     {
         $sql = "DELETE FROM " . PREFIXE . "utilisateurpromo WHERE Id_utilisateur = :Id_apprenant;
-        DELETE FROM " . PREFIXE . "utilisateurcours WHERE Id_utilisateur = :Id_apprenant;
+        DELETE FROM " . PREFIXE . "utilisateurscours WHERE Id_utilisateur = :Id_apprenant;
         DELETE FROM " . PREFIXE . "utilisateur WHERE Id_utilisateur = :Id_apprenant";
 
 

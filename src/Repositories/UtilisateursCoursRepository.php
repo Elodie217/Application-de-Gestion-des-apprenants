@@ -4,6 +4,7 @@ namespace src\Repositories;
 
 use PDO;
 use src\Models\Database;
+use src\Models\Utilisateur;
 use src\Models\UtilisateursCours;
 
 class UtilisateursCoursRepository
@@ -66,5 +67,26 @@ class UtilisateursCoursRepository
         }
 
         return $reponse;
+    }
+
+    public function recupererRetards($Id_promo)
+    {
+        $sql = "SELECT * FROM " . PREFIXE . "utilisateur WHERE Id_utilisateur IN (
+	SELECT " . PREFIXE . "utilisateurscours.Id_utilisateur FROM " . PREFIXE . "utilisateurscours WHERE Retard_UtilisateursCours = 1
+    ) AND Id_utilisateur IN (
+	SELECT " . PREFIXE . "utilisateurpromo.Id_utilisateur FROM " . PREFIXE . "utilisateurpromo WHERE " . PREFIXE . "utilisateurpromo.Id_promo = :idPromo
+    )";
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindParam(':idPromo', $Id_promo);
+        $statement->execute();
+        $objets = $statement->fetchAll(PDO::FETCH_CLASS, Utilisateur::class);
+
+        $retour =  [];
+
+        foreach ($objets as $objet) {
+            array_push($retour, $objet->getObjectToArray());
+        }
+        return $retour;
     }
 }

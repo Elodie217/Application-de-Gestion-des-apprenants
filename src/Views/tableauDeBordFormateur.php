@@ -64,20 +64,13 @@
         </div>
 
         <div class="flex divBtnSousMenuRetards">
-            <!-- <button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
-            <button onclick="afficherSectionRetards()" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Retards</button>
-            <button onclick="afficherSectionAbs()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
 
-            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div> -->
         </div>
 
-        <!-- Table responsive wrapper -->
         <section class="overflow-x-auto bg-white">
 
-            <!-- Table -->
             <table class="min-w-full text-left whitespace-nowrap" style="width: 100%;">
 
-                <!-- Table head -->
                 <thead class=" tracking-wider border-b-2 border-black">
                     <tr>
                         <th scope="col" class="px-6 py-4 font-bold" style="width: 5%;">
@@ -127,20 +120,13 @@
         </div>
 
         <div class="flex divBtnSousMenuABS">
-            <!-- <button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
-            <button onclick="afficherSectionRetards()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Retards</button>
-            <button onclick="afficherSectionAbs()" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Absences</button>
 
-            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div> -->
         </div>
 
-        <!-- Table responsive wrapper -->
         <section class="overflow-x-auto bg-white">
 
-            <!-- Table -->
             <table class="min-w-full text-left whitespace-nowrap" style="width: 100%;">
 
-                <!-- Table head -->
                 <thead class=" tracking-wider border-b-2 border-black">
                     <tr>
                         <th scope="col" class="px-6 py-4 font-bold" style="width: 5%;">
@@ -168,11 +154,11 @@
                 </thead>
 
                 <!-- Table body -->
-                <tbody class="tableauBodyTablR">
-
+                <tbody class="tableauBodyTablA">
                 </tbody>
 
             </table>
+            <p class="text-center my-6 text-xl">Dans cette promo exemplaire, il n'y a aucun absent.</p>
         </section>
     </section>
 
@@ -203,9 +189,9 @@
 
 </body>
 <script src=" https://cdn.tailwindcss.com"></script>
-<!-- <script>
-    const = < HOME_URL ?>;
-</script> -->
+<script>
+    const HOME_URL = "<?= HOME_URL ?>";
+</script>
 <script src="../../Public/assets/scriptTableauDeBordFormateur.js"></script>
 <script src="../../Public/assets/scriptTableauDeBordFormateurPromo.js"></script>
 <script src="../../Public/assets/scriptTableauDeBordFormateurAppr.js"></script>
