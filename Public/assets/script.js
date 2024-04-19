@@ -36,7 +36,7 @@ function connexion(email, mdp) {
     body: JSON.stringify(userConnexion),
   };
 
-  fetch("http://applicationgestionapprenants2/public/connexion", params)
+  fetch(HOME_URL + "connexion", params)
     .then((res) => res.text())
     .then((data) => reponseConnexion(JSON.parse(data)));
 }
@@ -44,9 +44,9 @@ function connexion(email, mdp) {
 function reponseConnexion(reponse) {
   if (reponse["status"] == "success") {
     if (reponse["role"] == 1) {
-      window.location.href = `http://applicationgestionapprenants2/public/tableaudebordApprenant`;
+      window.location.href = HOME_URL + `tableaudebordApprenant`;
     } else if (reponse["role"] == 2) {
-      window.location.href = `http://applicationgestionapprenants2/public/tableaudebordFormateur`;
+      window.location.href = HOME_URL + `tableaudebordFormateur`;
     }
   } else if (reponse["status"] == "error") {
     messageErreurConnexion.innerText = reponse["message"];

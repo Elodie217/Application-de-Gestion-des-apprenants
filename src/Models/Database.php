@@ -38,31 +38,25 @@ final class Database
     public function initialisationBDD(): string
     {
 
-        // Vérifier si la base de données est vide
-        if ($this->testIfTableUserExists()) {
-            return "La base de données semble déjà remplie.";
-            die();
-        } else {
-            // Télécharger le(s) fichier(s) sql d'initialisation dans la BDD
-            // Et effectuer les différentes migrations
-            try {
+        // Télécharger le(s) fichier(s) sql d'initialisation dans la BDD
+        // Et effectuer les différentes migrations
+        try {
 
-                $migration = __DIR__ . "/../../AGA.sql";
-                if (file_exists($migration)) {
-                    $sql = file_get_contents($migration);
-                    $this->DB->query($sql);
-                } else {
-                    $migrationExistante = FALSE;
-                }
-
-
-                // Mettre à jour le fichier config.php
-                if ($this->UpdateConfig()) {
-                    return "installation de la Base de Données terminée !";
-                }
-            } catch (PDOException $erreur) {
-                return "impossible de remplir la Base de données 2 : " . $erreur->getMessage();
+            $migration = __DIR__ . "/../../Public/migration/AGA.sql";
+            if (file_exists($migration)) {
+                $sql = file_get_contents($migration);
+                $this->DB->query($sql);
+            } else {
+                $migrationExistante = FALSE;
             }
+
+
+            // Mettre à jour le fichier config.php
+            if ($this->UpdateConfig()) {
+                return "installation de la Base de Données terminée !";
+            }
+        } catch (PDOException $erreur) {
+            return "impossible de remplir la Base de données 2 : " . $erreur->getMessage();
         }
     }
 
@@ -70,16 +64,16 @@ final class Database
      * Vérifie si la table Films existe déjà dans la BDD
      * @return bool
      */
-    private function testIfTableUserExists(): bool
-    {
-        $existant = $this->DB->query('SHOW TABLES FROM ' . DB_NAME . ' like \'%User%\'')->fetch();
+    // private function testIfTableUserExists(): bool
+    // {
+    //     $existant = $this->DB->query('SHOW TABLES FROM ' . DB_NAME . ' like \'%User%\'')->fetch();
 
-        if ($existant !== false && $existant[0] == PREFIXE . "User") {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    //     if ($existant !== false && $existant[0] == PREFIXE . "User") {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
 
     private function UpdateConfig(): bool
@@ -96,7 +90,7 @@ final class Database
         define('PREFIXE', 'aga_');
 
 
-        define('HOME_URL', 'applicationgestionapprenants/');
+        define('HOME_URL', '/public/');
 
 
         define('DB_INITIALIZED', TRUE);

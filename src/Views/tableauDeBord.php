@@ -29,6 +29,9 @@
     </section>
 
 </body>
+<script>
+    const HOME_URL = "<?= HOME_URL ?>";
+</script>
 <script src=" https://cdn.tailwindcss.com"></script>
 <script src="../../Public/assets/scriptTableauDeBordApprenant.js"></script>
 

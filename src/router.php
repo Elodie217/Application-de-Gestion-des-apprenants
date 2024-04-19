@@ -235,6 +235,25 @@ switch ($route) {
                         default:
                             //Là faudrait mettre la où on affiche tous les apprenants
                     }
+                case $routeComposee[1] == "retards":
+                    switch ($route) {
+                        case $routeComposee[2] == "apprenants":
+                            // $data = file_get_contents("php://input");
+
+                            // $Promo = json_decode($data, true);
+
+                            // echo $UtilisateurController->ApprenantsByIdPromo($Promo['Id_promo']);
+                            die;
+
+                        default:
+                            $data = file_get_contents("php://input");
+
+                            $Promo = json_decode($data, true);
+
+                            echo $UtilisateurController->recupererRetards($Promo['Id_promo']);
+
+                            die;
+                    }
                 default:
                     $TableauController->indexFormateur();
 

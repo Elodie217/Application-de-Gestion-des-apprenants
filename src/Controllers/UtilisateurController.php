@@ -3,6 +3,7 @@
 namespace src\Controllers;
 
 use src\Repositories\UtilisateurRepository;
+use src\Repositories\UtilisateursCoursRepository;
 
 class UtilisateurController
 {
@@ -166,10 +167,12 @@ class UtilisateurController
         // $to      = $email;
         $subject = 'Inscription Simplon';
         $message = '<html>
-        Bonjour ' . $nom . ' ' . $prenom . '! 
+        Bonjour ' . $nom . ' ' . $prenom . ' ! <br>
         
-        Afin de créer votre espace personne vous pouvez des à présence cliquer sur <a href="http://applicationgestionapprenants2/public/sinscrire/' . $id . '">ce lien</a> afin de créer votre mot de passe.
-        
+        Afin de créer votre espace personnel, vous pouvez dès à présent cliquer sur <a href="https://simplondevgrenoble.nohost.me/elodieg/ApplicationGA/public/sinscrire/' . $id . '">ce lien</a> pour créer votre mot de passe.
+        <br>
+        Pour rappel, voici le mail à utiliser pour lors de votre connexion : ' . $email . '
+        <br>
         A bientôt chez Simplon !
         </html>';
 
@@ -231,6 +234,13 @@ class UtilisateurController
     {
         $utilisateurRepository = new UtilisateurRepository;
         $reponse = $utilisateurRepository->supprApprenant($Id_apprenant);
+        return json_encode($reponse);
+    }
+
+    public function recupererRetards($Id_promo)
+    {
+        $UtilisateursCoursRepository = new UtilisateursCoursRepository;
+        $reponse = $UtilisateursCoursRepository->recupererRetards($Id_promo);
         return json_encode($reponse);
     }
 }

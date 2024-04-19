@@ -60,9 +60,7 @@ function afficherDate(date) {
 //Récupérer API
 
 function recupererPromos() {
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions"
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/promotions")
     .then((res) => res.text())
     .then((data) => {
       promos = JSON.parse(data);
@@ -87,6 +85,40 @@ function afficherApprenants(Apprenants, idPromo, nomPromo) {
     `')">
              Ajouter apprenant
          </button>`;
+
+  document.querySelector(".divBtnSousMenuTableau").innerHTML =
+    `  <button onclick="afficherSectionTableauA()" class=" rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+     <button onclick="afficherSectionRetards(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] ">Retards</button>
+     <button onclick="afficherSectionAbs(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
+
+     <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>`;
+
+  document.querySelector(".divBtnSousMenuRetards").innerHTML =
+    `<button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+            <button onclick="afficherSectionRetards(` +
+    idPromo +
+    `)" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Retards</button>
+            <button onclick="afficherSectionAbs(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Absences</button>
+
+            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>`;
+
+  document.querySelector(".divBtnSousMenuABS").innerHTML =
+    `
+  <button onclick="afficherSectionTableauA()" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD] w-96 md:w-80 lg:w-64 ">Tableau apprenants</button>
+            <button onclick="afficherSectionRetards(` +
+    idPromo +
+    `)" class="rounded-t-lg border-b-[1px] py-2 px-4 gap-1 border-[#DEE2E6] text-[#0D6EFD]">Retards</button>
+            <button onclick="afficherSectionAbs(` +
+    idPromo +
+    `)" class="rounded-t-lg border-[1px] border-b-[0px] py-2 px-4 gap-1 border-[#DEE2E6]">Absences</button>
+
+            <div class="w-full border-b-[1px] border-[#DEE2E6]"></div>`;
 
   document.querySelector(".tableauBodyTablA").innerHTML = ``;
 
@@ -162,10 +194,7 @@ function voirPromo(idPromo, nomPromo) {
     body: JSON.stringify(Promo),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions/apprenants",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/promotions/apprenants", params)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -174,9 +203,7 @@ function voirPromo(idPromo, nomPromo) {
 }
 
 function recupererRoles(idRoleApprenant, idApprenant) {
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions/roles"
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/promotions/roles")
     .then((res) => res.text())
     .then((data) => {
       let roles = JSON.parse(data);
@@ -184,7 +211,8 @@ function recupererRoles(idRoleApprenant, idApprenant) {
       if (role) {
         document.querySelector(".Role" + idApprenant).innerHTML =
           role["Nom_role"];
-        // return role["Nom_role"];
+        document.querySelector(".RoleR" + idApprenant).innerHTML =
+          role["Nom_role"];
       } else {
         return null;
       }
@@ -263,10 +291,7 @@ function sauvegarderPromo(nomPromo, dateDebutPromo, dateFinPromo, placePromo) {
     body: JSON.stringify(promo),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions/newpromo",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/promotions/newpromo", params)
     .then((res) => res.text())
     .then((data) => {
       reponseCreationPromo(JSON.parse(data));
@@ -320,7 +345,7 @@ function afficherValueEdit(idPromo) {
   };
 
   fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions/affichereditpromo",
+    HOME_URL + "tableaudebordFormateur/promotions/affichereditpromo",
     params
   )
     .then((res) => res.text())
@@ -432,10 +457,7 @@ function editerPromo(
     body: JSON.stringify(promo),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions/editpromo",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/promotions/editpromo", params)
     .then((res) => res.text())
     .then((data) => {
       reponseCreationPromo(JSON.parse(data));
@@ -476,10 +498,7 @@ function supprimerPromo(idPromo) {
     body: JSON.stringify(promo),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/tableaudebordFormateur/promotions/supprpromo",
-    params
-  )
+  fetch(HOME_URL + "tableaudebordFormateur/promotions/supprpromo", params)
     .then((res) => res.text())
     .then((data) => {
       reponseEditPromo(JSON.parse(data));

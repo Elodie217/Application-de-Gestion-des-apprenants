@@ -48,17 +48,14 @@ function inscription(mdpInscription, mdpConfirmation, fin_url) {
     body: JSON.stringify(userInscription),
   };
 
-  fetch(
-    "http://applicationgestionapprenants2/public/sinscrire/inscription",
-    params
-  )
+  fetch(HOME_URL + "sinscrire/inscription", params)
     .then((res) => res.text())
     .then((data) => reponseInscription(JSON.parse(data)));
 }
 
 function reponseInscription(reponse) {
   if (reponse["status"] == "success") {
-    window.location.href = `http://applicationgestionapprenants2/public/`;
+    window.location.href = HOME_URL + ``;
   } else if (reponse["status"] == "error") {
     messageErreurInscription.innerText = reponse["message"];
   }
