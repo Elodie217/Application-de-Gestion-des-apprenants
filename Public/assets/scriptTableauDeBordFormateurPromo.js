@@ -37,7 +37,9 @@ function afficherPromos(promos) {
                             <button class="text-[#0D6EFD] mx-2" onclick="afficherEditPromo(` +
       element["Id_promo"] +
       `)">Editer</button>
-                            <button class="text-[#0D6EFD] mx-2">Supprimer</button>
+                            <button class="text-[#0D6EFD] mx-2" onclick="supprimerPromo(` +
+      element["Id_promo"] +
+      `)">Supprimer</button>
 
                         </td>
                     </tr>`;

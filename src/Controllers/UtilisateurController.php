@@ -169,7 +169,7 @@ class UtilisateurController
         $message = '<html>
         Bonjour ' . $nom . ' ' . $prenom . ' ! <br>
         
-        Afin de créer votre espace personnel, vous pouvez dès à présent cliquer sur <a href="https://simplondevgrenoble.nohost.me/elodieg/ApplicationGA/public/sinscrire/' . $id . '">ce lien</a> pour créer votre mot de passe.
+        Afin de créer votre espace personnel, vous pouvez dès à présent cliquer sur <a href="/public/sinscrire/' . $id . '">ce lien</a> pour créer votre mot de passe.
         <br>
         Pour rappel, voici le mail à utiliser pour lors de votre connexion : ' . $email . '
         <br>
