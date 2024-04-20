@@ -250,6 +250,16 @@ function verificationCreaCode(HeureDebut_cours, HeureFin_cours, idCours) {
     });
 }
 
+//Maintenance
+function afficherMaintenance() {
+  document.querySelector(".flou").classList.remove("hidden");
+  document.querySelector(".divMaintenance").classList.remove("hidden");
+}
+function enleverMaintenance() {
+  document.querySelector(".flou").classList.add("hidden");
+  document.querySelector(".divMaintenance").classList.add("hidden");
+}
+
 //Deconnexion
 function deconnexion() {
   fetch(HOME_URL + "deconnexion")

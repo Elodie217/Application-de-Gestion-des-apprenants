@@ -51,12 +51,8 @@ function afficherRetards(Apprenants) {
       element["Id_utilisateur"] +
       ` px-6 py-4"></td>
                         <td class="px-6 py-4">
-                            <button class="text-[#0D6EFD] mx-2" onclick="afficherEditApprenant(` +
-      element["Id_utilisateur"] +
-      `)">Editer</button>
-                            <button class="text-[#0D6EFD] mx-2" onclick="supprimerApprenant(` +
-      element["Id_utilisateur"] +
-      `)">Supprimer</button>
+                            <button class="text-[#0D6EFD] mx-2" onclick="afficherMaintenance()">Editer</button>
+                            <button class="text-[#0D6EFD] mx-2" onclick="afficherMaintenance()">Supprimer</button>
                         </td>
                     </tr>`;
 

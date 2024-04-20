@@ -15,7 +15,15 @@
     include __DIR__ . '/Include/navDeconnexion.php'
     ?>
 
-    <div class="messageReussite hidden text-[#0cdb00] text-center text-xl absolute w-full m-auto top-6"></div>
+    <div class="fixed messageReussite hidden text-[#0cdb00] text-center text-xl w-full m-auto top-6"></div>
+
+    <div class="flou hidden fixed w-full h-full top-0 backdrop-blur-sm "></div>
+
+    <div class="divMaintenance hidden fixed w-2/4 bg-[#f1f0f0]  text-xl absolute mx-[25%] pt-3 border-2 border-slate-600 rounded-lg top-18 mb-3">
+        <button onclick="enleverMaintenance()" class="ml-[90%]"><i class="fa-regular fa-circle-xmark text-right text-3xl"></i></button>
+        <p class="text-center">Désolé, cette partie du site est actuellement en maintenance.</p>
+        <img src="<?= HOME_URL ?>assets/medias/img.png" alt="image de maintenance" class="w-4/5 mx-[10%]">
+    </div>
 
 
     <section class="Accueil m-4 gap-10">
@@ -189,13 +197,14 @@
 
 </body>
 <script src=" https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/97cd5da9a0.js" crossorigin="anonymous"></script>
 <script>
     const HOME_URL = "<?= HOME_URL ?>";
 </script>
-<script src="../../Public/assets/scriptTableauDeBordFormateur.js"></script>
-<script src="../../Public/assets/scriptTableauDeBordFormateurPromo.js"></script>
-<script src="../../Public/assets/scriptTableauDeBordFormateurAppr.js"></script>
-<script src="../../Public/assets/scriptRetard.js"></script>
+<script type="text/javascript" src="<?= HOME_URL ?>/assets/scriptTableauDeBordFormateur.js"></script>
+<script type="text/javascript" src="<?= HOME_URL ?>/assets/scriptTableauDeBordFormateurPromo.js"></script>
+<script type="text/javascript" src="<?= HOME_URL ?>/assets/scriptTableauDeBordFormateurAppr.js"></script>
+<script type="text/javascript" src="<?= HOME_URL ?>/assets/scriptRetard.js"></script>
 
 
 </html>
